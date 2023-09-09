@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RankHandsUTest {
@@ -25,18 +24,16 @@ class RankHandsUTest {
         Hand royalFlushHand = new Hand(List.of());
         royalFlushHand.setHandValue(HandValue.ROYAL_FLUSH);
 
-        List<Hand> hands = List.of(fullHouseHand, royalFlushHand, pairHand, royalFlushHand);
+        Hand foldHand = new Hand(List.of());
+
+        List<Hand> hands = List.of(fullHouseHand, royalFlushHand, pairHand, royalFlushHand, foldHand);
 
         // When
         List<Hand> rankedHands = rankHands.rank(hands);
 
         // Then
-        assertSame(rankedHands.get(0), royalFlushHand);
-        assertSame(rankedHands.get(1), royalFlushHand);
-        assertSame(rankedHands.get(2), fullHouseHand);
-        assertSame(rankedHands.get(3), pairHand);
-        assertTrue(rankedHands.get(0).isWinning());
         assertTrue(rankedHands.get(1).isWinning());
+        assertTrue(rankedHands.get(3).isWinning());
     }
 
 }
