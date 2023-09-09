@@ -8,12 +8,17 @@ import java.util.List;
 
 public class RankHands {
     public List<Hand> rank(List<Hand> hands) {
-        List<Hand> rankedHands = hands.stream().sorted(Comparator.comparing(Hand::getHandValue).reversed()).toList();
+        List<Hand> rankedHands =
+                hands.stream()
+                        .filter(hand -> hand.getHandValue() != null)
+                        .sorted(Comparator.comparing(Hand::getHandValue).reversed())
+                        .toList();
+
         HandValue highestHandValue = rankedHands.get(0).getHandValue();
         rankedHands.stream()
                 .filter(hand -> highestHandValue.equals(hand.getHandValue()))
-                .forEach(hand -> hand.setWinning(true));
+                .forEach(hand -> hand.hasWon(true));
 
-        return rankedHands;
+        return hands;
     }
 }
