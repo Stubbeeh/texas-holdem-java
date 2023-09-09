@@ -25,12 +25,11 @@ public class Hand {
         return this;
     }
 
-    public Boolean getWinning() {
-        return isWinning;
+    public Boolean isWinning() {
+        return isWinning != null && isWinning;
     }
 
-    public Hand setWinning(Boolean winning) {
+    public void hasWon(Boolean winning) {
         isWinning = winning;
-        return this;
     }
 }

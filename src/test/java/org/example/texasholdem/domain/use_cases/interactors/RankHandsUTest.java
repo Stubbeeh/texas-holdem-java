@@ -35,8 +35,8 @@ class RankHandsUTest {
         assertSame(rankedHands.get(1), royalFlushHand);
         assertSame(rankedHands.get(2), fullHouseHand);
         assertSame(rankedHands.get(3), pairHand);
-        assertTrue(rankedHands.get(0).getWinning());
-        assertTrue(rankedHands.get(1).getWinning());
+        assertTrue(rankedHands.get(0).isWinning());
+        assertTrue(rankedHands.get(1).isWinning());
     }
 
 }

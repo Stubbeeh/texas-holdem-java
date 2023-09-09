@@ -1,5 +1,8 @@
 package org.example.texasholdem.domain.entities;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum Rank {
 
     TWO("2"),
@@ -10,7 +13,7 @@ public enum Rank {
     SEVEN("7"),
     EIGHT("8"),
     NINE("9"),
-    TEN("10"),
+    TEN("T"),
     JACK("J"),
     QUEEN("Q"),
     KING("K"),
@@ -20,5 +23,15 @@ public enum Rank {
 
     Rank(String code) {
         this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public static Optional<Rank> fromCode(String code) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.getCode().equals(code))
+                .findFirst();
     }
 }
