@@ -7,6 +7,7 @@ import org.example.texasholdem.domain.entities.Rank;
 import org.example.texasholdem.domain.entities.Suit;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,13 +20,14 @@ class StraightFlushCalculatorUTest {
     @Test
     void calculate_should_return_STRAIGHT_FLUSH_when_the_hand_contains_5_following_cards_from_the_same_suit() {
         // Given
-        Hand hand = new Hand(List.of(
-                new Card(Rank.JACK, Suit.DIAMONDS),
-                new Card(Rank.TEN, Suit.DIAMONDS),
-                new Card(Rank.NINE, Suit.DIAMONDS),
-                new Card(Rank.EIGHT, Suit.DIAMONDS),
-                new Card(Rank.SEVEN, Suit.DIAMONDS)
-        ));
+        List<Card> cards = new ArrayList<>(5);
+        cards.add(new Card(Rank.JACK, Suit.DIAMONDS));
+        cards.add(new Card(Rank.TEN, Suit.DIAMONDS));
+        cards.add(new Card(Rank.NINE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.EIGHT, Suit.DIAMONDS));
+        cards.add(new Card(Rank.SEVEN, Suit.DIAMONDS));
+
+        Hand hand = new Hand(cards);
 
         // When
         HandValue handValue = straightFlushCalculator.calculate(hand);
@@ -37,13 +39,14 @@ class StraightFlushCalculatorUTest {
     @Test
     void calculate_should_return_null_when_the_hand_does_not_contain_5_following_cards_from_the_same_suit() {
         // Given
-        Hand hand = new Hand(List.of(
-                new Card(Rank.TWO, Suit.DIAMONDS),
-                new Card(Rank.THREE, Suit.HEARTS),
-                new Card(Rank.FOUR, Suit.DIAMONDS),
-                new Card(Rank.FIVE, Suit.SPADES),
-                new Card(Rank.SIX, Suit.CLUBS)
-        ));
+        List<Card> cards = new ArrayList<>(5);
+        cards.add(new Card(Rank.TWO, Suit.DIAMONDS));
+        cards.add(new Card(Rank.THREE, Suit.HEARTS));
+        cards.add(new Card(Rank.FOUR, Suit.DIAMONDS));
+        cards.add(new Card(Rank.FIVE, Suit.SPADES));
+        cards.add(new Card(Rank.SIX, Suit.CLUBS));
+
+        Hand hand = new Hand(cards);
 
         // When
         HandValue handValue = straightFlushCalculator.calculate(hand);

@@ -20,9 +20,14 @@ public class FullHouseCalculator implements HandValueCalculator {
                         .filter(entry -> entry.getValue().size() > 2)
                         .map(Map.Entry::getKey).toList();
 
+        if (listOfThreeOfAKind.isEmpty()) {
+            return null;
+        }
+
         if (listOfThreeOfAKind.size() > 1) {
             return HandValue.FULL_HOUSE;
         }
+
         List<Rank> listOfOtherPairs = groupedCards.entrySet().stream()
                 .filter(entry -> !listOfThreeOfAKind.contains(entry.getKey()))
                 .filter(entry -> entry.getValue().size() > 1)

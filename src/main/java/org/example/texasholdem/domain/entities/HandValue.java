@@ -4,6 +4,7 @@ import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculato
 import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculators.FourOfAKindCalculator;
 import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculators.FullHouseCalculator;
 import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculators.HandValueCalculator;
+import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculators.HighCardCalculator;
 import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculators.PairCalculator;
 import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculators.RoyalFlushCalculator;
 import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculators.StraightCalculator;
@@ -13,7 +14,7 @@ import org.example.texasholdem.domain.use_cases.interactors.hand_value_calculato
 
 public enum HandValue {
 
-    HIGH_CARD(null),
+    HIGH_CARD(new HighCardCalculator()),
     PAIR(new PairCalculator()),
     TWO_PAIR(new TwoPairCalculator()),
     THREE_OF_A_KIND(new ThreeOfAKindCalculator()),

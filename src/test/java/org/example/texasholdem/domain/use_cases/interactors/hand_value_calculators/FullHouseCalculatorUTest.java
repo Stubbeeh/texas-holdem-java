@@ -51,7 +51,7 @@ class FullHouseCalculatorUTest {
         HandValue handValue = fullHouseCalculator.calculate(hand);
 
         // Then
-        assertNull(handValue);
+        assertEquals(handValue, HandValue.FULL_HOUSE);
     }
 
     @Test
@@ -59,7 +59,7 @@ class FullHouseCalculatorUTest {
         // Given
         Hand hand = new Hand(List.of(
                 new Card(Rank.AS, Suit.DIAMONDS),
-                new Card(Rank.THREE, Suit.HEARTS),
+                new Card(Rank.AS, Suit.HEARTS),
                 new Card(Rank.FOUR, Suit.DIAMONDS),
                 new Card(Rank.FIVE, Suit.SPADES),
                 new Card(Rank.SIX, Suit.CLUBS)

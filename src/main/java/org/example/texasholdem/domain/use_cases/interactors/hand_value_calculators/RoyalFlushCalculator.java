@@ -10,7 +10,7 @@ import java.util.Comparator;
 public class RoyalFlushCalculator implements HandValueCalculator {
     @Override
     public HandValue calculate(Hand hand) {
-        hand.getCards().sort(Comparator.comparing(card -> card.rank().ordinal()));
+        hand.getCards().sort(Comparator.comparing(Card::rank).reversed());
         Card lastCard = hand.getCards().get(0);
         int numberOfCardsStraight = 1;
         int cardIndex = 1;
@@ -21,7 +21,7 @@ public class RoyalFlushCalculator implements HandValueCalculator {
             if (numberOfCardsStraight == 1 && lastCard.rank() != Rank.AS) {
                 break;
             }
-            if (currentCard.rank().ordinal() == lastCard.rank().ordinal() + 1
+            if (currentCard.rank().ordinal() == lastCard.rank().ordinal() - 1
                     && lastCard.suit().equals(currentCard.suit())) {
                 numberOfCardsStraight++;
             } else {

@@ -7,6 +7,7 @@ import org.example.texasholdem.domain.entities.Rank;
 import org.example.texasholdem.domain.entities.Suit;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,31 +20,33 @@ class RoyalFlushCalculatorUTest {
     @Test
     void calculate_should_return_ROYAL_FLUSH_when_the_hand_contains_5_following_cards_from_the_same_suit_starting_with_as() {
         // Given
-        Hand hand = new Hand(List.of(
-                new Card(Rank.AS, Suit.DIAMONDS),
-                new Card(Rank.KING, Suit.DIAMONDS),
-                new Card(Rank.QUEEN, Suit.DIAMONDS),
-                new Card(Rank.JACK, Suit.DIAMONDS),
-                new Card(Rank.TEN, Suit.DIAMONDS)
-        ));
+        List<Card> cards = new ArrayList<>(5);
+        cards.add(new Card(Rank.AS, Suit.DIAMONDS));
+        cards.add(new Card(Rank.KING, Suit.DIAMONDS));
+        cards.add(new Card(Rank.QUEEN, Suit.DIAMONDS));
+        cards.add(new Card(Rank.JACK, Suit.DIAMONDS));
+        cards.add(new Card(Rank.TEN, Suit.DIAMONDS));
+
+        Hand hand = new Hand(cards);
 
         // When
         HandValue handValue = royalFlushCalculator.calculate(hand);
 
         // Then
-        assertEquals(handValue, HandValue.ROYAL_FLUSH);
+        assertEquals(HandValue.ROYAL_FLUSH, handValue);
     }
 
     @Test
     void calculate_should_return_null_when_the_hand_does_not_contain_5_following_cards_from_the_same_suit_starting_with_as() {
         // Given
-        Hand hand = new Hand(List.of(
-                new Card(Rank.TWO, Suit.DIAMONDS),
-                new Card(Rank.THREE, Suit.DIAMONDS),
-                new Card(Rank.FOUR, Suit.DIAMONDS),
-                new Card(Rank.FIVE, Suit.DIAMONDS),
-                new Card(Rank.SIX, Suit.DIAMONDS)
-        ));
+        List<Card> cards = new ArrayList<>(5);
+        cards.add(new Card(Rank.TWO, Suit.DIAMONDS));
+        cards.add(new Card(Rank.THREE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.FOUR, Suit.DIAMONDS));
+        cards.add(new Card(Rank.FIVE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.SIX, Suit.DIAMONDS));
+
+        Hand hand = new Hand(cards);
 
         // When
         HandValue handValue = royalFlushCalculator.calculate(hand);

@@ -14,13 +14,15 @@ public class ComputeAndSetHandValue {
             return;
         }
         stream(HandValue.values()).forEach(
-                hv -> computeAndReplace(hand, hv)
+                handValue -> computeAndReplace(hand, handValue)
         );
     }
 
-    private void computeAndReplace(Hand hand, HandValue hv) {
-        HandValue computedHandValue = hv.getCalculator().calculate(hand);
-        if (computedHandValue.ordinal() > hand.getHandValue().ordinal()) {
+    private void computeAndReplace(Hand hand, HandValue handValue) {
+        HandValue computedHandValue = handValue.getCalculator().calculate(hand);
+        if (computedHandValue != null
+            && (hand.getHandValue() == null
+                || computedHandValue.ordinal() > hand.getHandValue().ordinal())) {
             hand.setHandValue(computedHandValue);
         }
     }

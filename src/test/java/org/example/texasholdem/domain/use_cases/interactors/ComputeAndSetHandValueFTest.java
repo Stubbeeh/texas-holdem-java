@@ -7,33 +7,35 @@ import org.example.texasholdem.domain.entities.Rank;
 import org.example.texasholdem.domain.entities.Suit;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-class ComputeAndSetHandValueUTest {
+class ComputeAndSetHandValueFTest {
 
     private final ComputeAndSetHandValue computeAndSetHandValue = new ComputeAndSetHandValue();
 
     @Test
     void compute_should_compute_the_value_of_the_given_hand_and_set_it() {
         // Given
-        Hand hand = new Hand(
-                List.of(
-                        new Card(Rank.AS, Suit.HEARTS),
-                        new Card(Rank.AS, Suit.SPADES),
-                        new Card(Rank.THREE, Suit.SPADES),
-                        new Card(Rank.JACK, Suit.CLUBS),
-                        new Card(Rank.FIVE, Suit.DIAMONDS),
-                        new Card(Rank.EIGHT, Suit.DIAMONDS),
-                        new Card(Rank.TEN, Suit.HEARTS)));
+        List<Card> cards = new ArrayList<>(7);
+        cards.add(new Card(Rank.AS, Suit.HEARTS));
+        cards.add(new Card(Rank.AS, Suit.SPADES));
+        cards.add(new Card(Rank.THREE, Suit.SPADES));
+        cards.add(new Card(Rank.JACK, Suit.CLUBS));
+        cards.add(new Card(Rank.FIVE, Suit.DIAMONDS));
+        cards.add(new Card(Rank.EIGHT, Suit.DIAMONDS));
+        cards.add(new Card(Rank.TEN, Suit.HEARTS));
+
+        Hand hand = new Hand(cards);
 
         // When
         computeAndSetHandValue.compute(hand);
 
         // Then
-        assertEquals(hand.getHandValue(), HandValue.PAIR);
+        assertEquals(HandValue.PAIR, hand.getHandValue());
     }
 
     @Test
