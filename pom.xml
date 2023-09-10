@@ -34,9 +34,12 @@
             <version>3.24.2</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
+
     <build>
+        <testSourceDirectory>
+            src/test
+        </testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
