@@ -37,9 +37,6 @@
     </dependencies>
 
     <build>
-        <testSourceDirectory>
-            src/test
-        </testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
